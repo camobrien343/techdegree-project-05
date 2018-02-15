@@ -1,0 +1,101 @@
+
+
+
+/* Base Styles -------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #878787;
+  margin: 0;
+  font: 1em/1.5 'Nunito Sans', sans-serif;
+  margin: 5%;
+}
+
+/* Text Styles -------------------- */
+
+h1 {
+	font-size: 1.1em;
+	text-transform: uppercase;
+}
+
+/* Layout Styles -------------------- */
+
+.wrapper {
+	max-width: 1200px;
+}
+
+
+.container {
+	background-color: #efefef;
+	
+	margin: 0 auto;
+	padding: 5% 0;
+
+	display: flex;
+	flex-flow: row wrap;
+}
+
+
+.user-card {
+	background-color: #fff;
+	margin: 8px;
+	padding: 10px;
+	border: 1px solid lightgrey;
+	border-radius: 10px;
+
+	display: flex;
+	flex: 1 0 31.5%;
+	min-width: 200px;
+}
+
+.user-card:hover {
+	transform: scale(1.05);
+	transition: all 0.3s;
+	/*-webkit-box-shadow: 3px 4px 5px 0px #000000; */
+	box-shadow: 3px 3px 10px 0px rgba(120, 120, 120, 0.3);
+	-webkit-box-shadow: 3px 3px 10px 0px rgba(120, 120, 120, 0.3);
+	-moz-box-shadow: 3px 3px 10px 0px rgba(120, 120, 120, 0.3);
+	-o-box-shadow: 3px 3px 10px 0px rgba(120, 120, 120, 0.3);
+	-ms-box-shadow: 3px 3px 10px 0px rgba(120, 120, 120, 0.3);
+
+}
+
+.user-card img {
+	border-radius: 50%;
+	-moz-border-radius: 50%; 
+	-webkit-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	padding: 5%;
+
+	max-width: 150px;
+	max-height: 150px;
+}
+
+.user-info {
+	float: right;
+
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+	line-height: 0;
+}
+
+.user-info h2 {
+	color: #404A51;
+}
+
+.user-info p {
+	color: #ACB0B3;
+}
+
+
+
+/* Media Queries -------------------- */
+
+
+
+
