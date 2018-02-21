@@ -7,7 +7,7 @@
 	const path = "https://randomuser.me/api/?results=12&nat=us";
 
 	const searchInput = document.querySelector('.search-input');
-	let searchField = document.querySelector('.input');
+	const searchField = document.querySelector('.input');
 
 
 	const searchSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="20px"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>'
@@ -15,13 +15,9 @@
 <g><path d="M626.9,304L500,430.9L373.1,304L304,373.1L430.9,500L304,626.9l69.1,69.1L500,569.1L626.9,696l69.1-69.1L569.1,500L696,373.1L626.9,304z M500,10C229,10,10,229,10,500s219,490,490,490s490-219,490-490S771,10,500,10z M500,892c-216.1,0-392-175.9-392-392c0-216.1,175.9-392,392-392c216.1,0,392,175.9,392,392C892,716.1,716.1,892,500,892z"/></g>
 </svg>`
 
-	searchInput.innerHTML =
-	    `<input class="input form-textfield--icon" placeholder="Search employees"/>
-	    
-	    ${searchSVG}
-	    ${xSVG}`;
+	searchInput.innerHTML = `<input class="input form-textfield--icon" placeholder="Search employees"/>${searchSVG}${xSVG}`;
 
-document.querySelector('#xSVG').style.display = 'none';
+	document.querySelector('#xSVG').style.display = 'none';
 
 	let state = {
 	    employee: [],
@@ -54,7 +50,7 @@ document.querySelector('#xSVG').style.display = 'none';
 		const container = document.querySelector('.container');
 		container.innerHTML = '';
 		state.filteredEmployee.forEach(function(employee, index) {
-		    let userCard = document.createElement("div");
+		    const userCard = makeElement('div');
 		    userCard.classList = 'user-card';
 		    userCard.innerHTML =
 
@@ -78,8 +74,9 @@ document.querySelector('#xSVG').style.display = 'none';
 			let searchField = document.querySelector('.input');
 			if (state.modalWindow) {
 			    document.body.style.overflow = 'hidden';
-			    var employee = state.filteredEmployee[state.modalIndex];
-			    // var dobDisplay = employee.dob.slice(0, 10).split('-');
+			    
+			    let employee = state.filteredEmployee[state.modalIndex];
+			    let dobDisplay = employee.dob.slice(0, 10).split('-');
 			    modalContent.innerHTML =
 		        	`<button id="close" class="close">X</button>
 	    	            <img src=${employee.picture.large}>
@@ -90,21 +87,20 @@ document.querySelector('#xSVG').style.display = 'none';
 	    	            
 	                    <p class="phone">${employee.phone}</p>
 	    	            <p class="address">${titleCase(employee.location.street)}, ${titleCase(employee.location.city)}, ${employee.location.postcode}, ${employee.nat}</p>
-	    	            <p class="Birthday">Birthday: ${employee.dob}</p>
+	    	            <p class="Birthday">Birthday: ${dobDisplay[1]}/${dobDisplay[2]}/${dobDisplay[0]}</p>
 	                    <div class="modal-buttons">
 	                    <button id="previous" class="previous">Previous</button>
 	                    <button id="next" class="next">Next</button>
 	                    </div>
 	    	        </div>`
-			  
-			    modalContent.querySelector('.close').addEventListener('click', function(event) {
+			    modalContent.querySelector('.close').addEventListener('click', event => {
 			        console.log(event);
 	                event.preventDefault();
 			        state.modalWindow = false;
 			        render.employeeModal();
 			    });
 			    if (searchField.value == "") {
-			    	modalContent.querySelector('.previous').addEventListener('click', function(event) {
+			    	modalContent.querySelector('.previous').addEventListener('click', event => {
 			    	    if (state.modalIndex === 0) {
 			    	        state.modalIndex = state.employee.length - 1;
 			    	    } else {
@@ -112,7 +108,7 @@ document.querySelector('#xSVG').style.display = 'none';
 			    	    }
 			    	    render.employeeModal();
 			    	});
-			    	modalContent.querySelector('.next').addEventListener('click', function(event) {
+			    	modalContent.querySelector('.next').addEventListener('click', event => {
 			    	    if (state.modalIndex === state.employee.length - 1) {
 			    	        state.modalIndex = 0;
 			    	    } else {
@@ -154,19 +150,16 @@ document.querySelector('#xSVG').style.display = 'none';
 	    });
 
 	    searchInput.addEventListener('keyup', function(event) {
-	        let q = event.target.value.toLowerCase();
-
-	        if (q === "") {
+	        let searchTarget = event.target.value.toLowerCase();
+	        if (searchTarget === "") {
 	            state.filteredEmployee = state.employee;
 	            document.querySelector('#xSVG').style.display = 'none';
 	        } else {
 	        	document.querySelector('#xSVG').style.display = 'block';
-	            state.filteredEmployee = state.employee.filter(function(employee) {
-	                return employee.name.first.toLowerCase().indexOf(q) > -1 ||
-	                employee.name.last.toLowerCase().indexOf(q) > -1 ||
-	                employee.login.username.toLowerCase().indexOf(q) > -1;
-
-	         
+	            state.filteredEmployee = state.employee.filter(employee => {
+	                return employee.name.first.toLowerCase().indexOf(searchTarget) > -1 ||
+	                employee.name.last.toLowerCase().indexOf(searchTarget) > -1 ||
+	                employee.login.username.toLowerCase().indexOf(searchTarget) > -1;
 	            }).map(function (employee, index) {
 	                employee.filteredId = index;
 	                return employee;
@@ -183,5 +176,4 @@ document.querySelector('#xSVG').style.display = 'none';
 	    });
 	}
 	init();
-
 })();
