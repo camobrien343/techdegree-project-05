@@ -1,6 +1,5 @@
 
 
-
 /* Base Styles -------------------- */
 
 * {
@@ -28,10 +27,7 @@ h1 {
 	max-width: 1200px;
 }
 
-
 .container {
-	background-color: #efefef;
-	
 	margin: 0 auto;
 	padding: 5% 0;
 
@@ -49,7 +45,7 @@ h1 {
 
 	display: flex;
 	flex: 1 0 31.5%;
-	min-width: 200px;
+	min-width: 380px;
 }
 
 .user-card:hover {
@@ -72,14 +68,12 @@ h1 {
 	-ms-border-radius: 50%;
 	-o-border-radius: 50%;
 	padding: 5%;
-
 	max-width: 150px;
 	max-height: 150px;
 }
 
 .user-info {
 	float: right;
-
 	display: flex;
     flex-direction: column;
     justify-content: center;
@@ -100,7 +94,6 @@ h1 {
 .search-input {
 	float: right;
 	width: 35%;
-
 }
 
 .search-input > input {
@@ -113,10 +106,6 @@ h1 {
 .search-input > input:focus {
 	outline: none;
 }
-
-/*.search-input input::-webkit-input-placeholder {
-	padding-left: 28px;
-}*/
 
 .form-textfield--icon {
 	padding-left: 28px;
@@ -138,6 +127,10 @@ h1 {
 .search-input svg:last-of-type {
 	float: right;
 	padding-right: 5px;
+}
+
+.search-input > input:focus + svg:first-of-type {
+	fill: ghostwhite;
 }
 
 .search-input svg:last-of-type:hover {
@@ -172,12 +165,9 @@ h1 {
 }
 .modal-content button {
 	border: none;
-	
 	float: right;
 	font-size: 1rem;
 	color: #ACB0B3;
-
-	
 }
 
 .close {
@@ -209,9 +199,9 @@ h1 {
 .previous:focus,
 .next:hover,
 .next:hover {
-  color: black;
   text-decoration: none;
   cursor: pointer;
+  color: #404A51;
 }
 
 .modal-content img {
@@ -219,9 +209,6 @@ h1 {
 }
 
 .modal-content {
-
-
-
 	width: 400px;
 	position: absolute;
 	top: 30%;
@@ -233,8 +220,6 @@ h1 {
 	color: #444;
 	line-height: .2rem;
 	border-radius: 10px;
-	/*z-index: 9000;*/
-
 	box-shadow: 3px 3px 10px 0px rgba(120, 120, 120, 0.3);
 	-webkit-box-shadow: 3px 3px 10px 0px rgba(120, 120, 120, 0.3);
 	-moz-box-shadow: 3px 3px 10px 0px rgba(120, 120, 120, 0.3);
@@ -258,7 +243,3 @@ h1 {
 .modal-content .address {
 	line-height: 1rem;
 }
-
-/* Media Queries -------------------- */
-
-

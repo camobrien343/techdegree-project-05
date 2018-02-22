@@ -81,8 +81,9 @@
 		        	`<button id="close" class="close">X</button>
 	    	            <img src=${employee.picture.large}>
 	    	            <h2 class="user-name">${titleCase(employee.name.first)} ${titleCase(employee.name.last)}</h2>
+	    	            <p class="user-app-name"><b>${employee.login.username}</b></p>
 	    	            <p class="email">${employee.email}</p>
-	    	            <p class="location">${titleCase(employee.location.city)}</p>
+	    	            
 
 	    	            
 	                    <p class="phone">${employee.phone}</p>
@@ -95,7 +96,7 @@
 	    	        </div>`
 			    modalContent.querySelector('.close').addEventListener('click', event => {
 			        console.log(event);
-	                event.preventDefault();
+	                // event.preventDefault();
 			        state.modalWindow = false;
 			        render.employeeModal();
 			    });
